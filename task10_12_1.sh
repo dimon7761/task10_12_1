@@ -23,6 +23,7 @@ apt_update: true
 apt_sources:
 packages:
 runcmd:
+  - echo  "127.0.0.1 $VM1_NAME" >> /etc/hosts
   - echo 1 > /proc/sys/net/ipv4/ip_forward
   - iptables -A INPUT -i lo -j ACCEPT
   - iptables -A FORWARD -i $VM1_EXTERNAL_IF -o $VM1_INTERNAL_IF -j ACCEPT
@@ -63,6 +64,7 @@ local-hostname: $VM1_NAME
 network-interfaces: |
   auto $VM1_EXTERNAL_IF
   iface $VM1_EXTERNAL_IF inet dhcp
+  dns-nameservers $VM_DNS
 
   auto $VM1_INTERNAL_IF
   iface $VM1_INTERNAL_IF inet static
@@ -85,6 +87,7 @@ network-interfaces: |
   netmask $INTERNAL_NET_MASK
   gateway $VM1_INTERNAL_IP
   dns-nameservers $VM_DNS
+  dns-nameservers $EXTERNAL_NET_HOST_IP
 
   auto $VM2_MANAGEMENT_IF
   iface $VM2_MANAGEMENT_IF inet static
