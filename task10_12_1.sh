@@ -12,13 +12,13 @@ VIRT_TYPE=$(egrep -c '(vmx|svm)' /proc/cpuinfo)
 if (( $VIRT_TYPE > 0 )); then VIRT_TYPE="kvm"; else VIRT_TYPE="qemu"; fi
 
 ####################################### CLOUD INIT #########################################
-yes "y" | ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+yes "y" | ssh-keygen -t rsa -N "" -f $(echo $SSH_PUB_KEY | rev | cut -c 4- | rev)
 
 ###### vm1 user-data ######
 cat << EOF > config-drives/$VM1_NAME-config/user-data
 #cloud-config
 ssh_authorized_keys:
-  - $(cat  ~/.ssh/id_rsa.pub)
+  - $(cat  $SSH_PUB_KEY)
 apt_update: true
 apt_sources:
 packages:
@@ -38,7 +38,7 @@ EOF
 cat << EOF > config-drives/$VM2_NAME-config/user-data
 #cloud-config
 ssh_authorized_keys: 
-  - $(cat  ~/.ssh/id_rsa.pub)
+  - $(cat  $SSH_PUB_KEY)
 apt_update: true
 apt_sources:
 packages:
