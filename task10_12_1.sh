@@ -96,7 +96,7 @@ mkisofs -o $VM1_CONFIG_ISO -V cidata -r -J --quiet config-drives/$VM1_NAME-confi
 mkisofs -o $VM2_CONFIG_ISO -V cidata -r -J --quiet config-drives/$VM2_NAME-config
 
 ######################################## CONF  NETWORK ##############################################
-exit
+
 ###### EXTERNAL ######
 echo "
 <network>
@@ -141,7 +141,7 @@ virsh net-start $MANAGEMENT_NET_NAME
 virsh net-autostart $MANAGEMENT_NET_NAME
 
 ####################################### VIRT INSTALL ##################################################
-#wget -O /var/lib/libvirt/images/ubunut-server-16.04.qcow2 https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-disk1.img
+wget -O /var/lib/libvirt/images/ubunut-server-16.04.qcow2 https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-disk1.img
 
 ###### VM1 CREATE ######
 cp /var/lib/libvirt/images/ubunut-server-16.04.qcow2  /var/lib/libvirt/images/$VM1_NAME/$VM1_NAME.qcow2
