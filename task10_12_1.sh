@@ -23,7 +23,6 @@ apt_update: true
 apt_sources:
 packages:
 runcmd:
-  - echo  "127.0.0.1 $VM1_NAME" >> /etc/hosts
   - echo 1 > /proc/sys/net/ipv4/ip_forward
   - iptables -A INPUT -i lo -j ACCEPT
   - iptables -A FORWARD -i $VM1_EXTERNAL_IF -o $VM1_INTERNAL_IF -j ACCEPT
@@ -48,7 +47,6 @@ packages:
   - curl
   - software-properties-common 
 runcmd:
-  - echo  "127.0.0.1 $VM2_NAME" >> /etc/hosts
   - ip link add $VXLAN_IF type vxlan id $VID remote $VM1_INTERNAL_IP local $VM2_INTERNAL_IP dstport 4789
   - ip link set vxlan0 up
   - ip addr add $VM2_VXLAN_IP/24 dev vxlan0
