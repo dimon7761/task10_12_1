@@ -84,8 +84,7 @@ network-interfaces: |
   address $VM2_INTERNAL_IP
   netmask $INTERNAL_NET_MASK
   gateway $VM1_INTERNAL_IP
-  dns-nameservers $VM_DNS
-  dns-nameservers $EXTERNAL_NET_HOST_IP
+  dns-nameservers $EXTERNAL_NET_HOST_IP $VM_DNS
 
   auto $VM2_MANAGEMENT_IF
   iface $VM2_MANAGEMENT_IF inet static
