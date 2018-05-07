@@ -24,6 +24,7 @@ MANAGEMENT_HOST_IP=${MANAGEMENT_NET}.1
 # VMs global parameters
 SSH_PUB_KEY=~/.ssh/id_rsa.pub
 VM_TYPE=hvm
+VM_VIRT_TYPE=kvm
 VM_DNS=8.8.8.8
 # overlay
 VXLAN_NET=10.255.0

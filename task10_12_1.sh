@@ -161,7 +161,7 @@ virt-install \
  --network network=$MANAGEMENT_NET_NAME \
  --noautoconsole \
  --quiet \
- --virt-type $VIRT_TYPE \
+ --virt-type $VM_VIRT_TYPE \
  --import
 virsh autostart $VM1_NAME
 
@@ -184,7 +184,7 @@ virt-install \
  --network network=$MANAGEMENT_NET_NAME \
  --noautoconsole \
  --quiet \
- --virt-type $VIRT_TYPE \
+ --virt-type $VM_VIRT_TYPE \
  --import
 virsh autostart $VM2_NAME
 virsh list
