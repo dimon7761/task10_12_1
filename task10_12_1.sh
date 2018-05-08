@@ -12,6 +12,7 @@ VIRT_TYPE=$(egrep -c '(vmx|svm)' /proc/cpuinfo)
 if (( $VIRT_TYPE > 0 )); then VIRT_TYPE="kvm"; else VIRT_TYPE="qemu"; fi
 
 ####################################### CLOUD INIT #########################################
+mkdir -p $(dirname $SSH_PUB_KEY)
 yes "y" | ssh-keygen -t rsa -N "" -f $(echo $SSH_PUB_KEY | rev | cut -c5- | rev)
 
 ###### vm1 user-data ######
